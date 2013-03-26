@@ -16,6 +16,7 @@
 
 class TLE {
 
+protected:
   std::string line[2];   // Raw TLE string
 
   // primitive data, loaded from TLE format
@@ -23,7 +24,7 @@ class TLE {
   char   classification; // Classification 'S' or 'U'
   int    IDYY;           // International Designator (Last two digits of launch year)
   int    IDNY;           // International Designator (Launch number of the year)
-  int    IDPL;           // International Designator (Piece of the launch)
+  char   IDPL[4];        // International Designator (Piece of the launch)
   int    epoch_year;     // Epoch Year (Last two digits of year)
   double epoch_day;      // Epoch (Day of the year and fractional portion of the day)
   double dmotion;        // First Time Derivative of the Mean Motion
