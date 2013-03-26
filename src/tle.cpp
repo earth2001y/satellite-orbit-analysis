@@ -23,9 +23,9 @@ bool TLE::set(const std::string& line1, const std::string& line2)
 
 bool TLE::validation(const std::string& line)
 {
-  const char* str = line[n].c_str();
-  const size_t s = line[n].size() - 1;
-  const int checksum = std::atoi(&str[s-1]);
+  const char* str = line.c_str();
+  const size_t s = line.size() - 1;
+  const int checksum = std::atoi(&str[s]);
 
   int sum = 0;
 

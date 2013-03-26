@@ -9,6 +9,11 @@
 
 #include <string>
 
+#ifdef UNITTEST
+# define protected public
+# define private   public
+#endif
+
 class TLE {
 
   std::string line[2];   // Raw TLE string
@@ -45,4 +50,7 @@ private:
   bool validation(const std::string& line);
 
 };
+
+#undef protected
+#undef private
 
