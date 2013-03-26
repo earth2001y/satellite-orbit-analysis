@@ -25,7 +25,7 @@ bool TLE::set(const std::string& line1, const std::string& line2)
   line[1] = line2;
 
   int lno,num[2],ext[2];
-  char sign[5];
+  char s[5];
 
 // *** parse line 1 ***
   tmpstr = line1;
@@ -39,19 +39,19 @@ bool TLE::set(const std::string& line1, const std::string& line2)
 
   std::sscanf(tmpstr.c_str(),
               "%1d %5d%c %2d%3d%3c %2d%12lf %1c%9lf %1c%5lf%1c%1d %1c%5lf%1c%1d %1c %4d",
-              &lno,&num[0],
-              &classification,&IDYY,&IDNY,IDPL,&epoch_year,&epoch_day,
-              &sign[0],&dmotion,
-              &sign[1],&ddmotion,&sign[2],&ext[0],
-              &sign[3],&BSTAR,&sign[4],&ext[1],
+              &lno,&num[0],&classification,
+              &IDYY,&IDNY,IDPL,&epoch_year,&epoch_day,
+              &s[0],&dmotion,
+              &s[1],&ddmotion,&s[2],&ext[0],
+              &s[3],&BSTAR,&s[4],&ext[1],
               &ephemeris,&elemnum);
 
   IDPL[3] = '\0';
-  ext[0]   *=  (sign[2] == '-')? -1.0: 1.0;
-  ext[1]   *=  (sign[4] == '-')? -1.0: 1.0;
-  dmotion  *= ((sign[0] == '-')? -1.0: 1.0) * 2.0;
-  ddmotion *= ((sign[1] == '-')? -1.0: 1.0) * 6.0 * 10e-6 * pow(10.0,ext[0]);
-  BSTAR    *= ((sign[3] == '-')? -1.0: 1.0)       * 10e-6 * pow(10.0,ext[1]);
+  ext[0]   *=  (s[2] == '-')? -1.0: 1.0;
+  ext[1]   *=  (s[4] == '-')? -1.0: 1.0;
+  dmotion  *= ((s[0] == '-')? -1.0: 1.0) * 2.0;
+  ddmotion *= ((s[1] == '-')? -1.0: 1.0) * 6.0 * 10e-6 * pow(10.0,ext[0]);
+  BSTAR    *= ((s[3] == '-')? -1.0: 1.0)       * 10e-6 * pow(10.0,ext[1]);
 
 // *** parse line 2 ***
   tmpstr = line2;
