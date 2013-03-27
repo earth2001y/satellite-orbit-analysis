@@ -56,6 +56,8 @@ void TLETest::test_set() {
   line2 = "2 23455  99.0090 272.6745 0008546 223.1686 136.8816 14.11711747148495";
 
   CPPUNIT_ASSERT(tle.set(line1,line2));
+  CPPUNIT_ASSERT(tle.line[0] == line1);
+  CPPUNIT_ASSERT(tle.line[1] == line2);
   CPPUNIT_ASSERT_EQUAL(23455,tle.number);
   CPPUNIT_ASSERT_EQUAL('U',tle.classification);
   CPPUNIT_ASSERT_EQUAL(94,tle.IDYY);
@@ -84,6 +86,8 @@ void TLETest::test_set() {
   line2 = "2 24277  98.3597  83.2073 0002090  64.7512 295.3886 14.28595439661547";
 
   CPPUNIT_ASSERT(tle.set(line1,line2));
+  CPPUNIT_ASSERT(tle.line[0] == line1);
+  CPPUNIT_ASSERT(tle.line[1] == line2);
   CPPUNIT_ASSERT_EQUAL(24277,tle.number);
   CPPUNIT_ASSERT_EQUAL('U',tle.classification);
   CPPUNIT_ASSERT_EQUAL(96,tle.IDYY);
