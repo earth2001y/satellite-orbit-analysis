@@ -1,5 +1,6 @@
 
 #include <cstdlib>
+#include <cstdio>
 #include <cmath>
 #include "tle.hpp"
 
@@ -24,7 +25,7 @@ bool TLE::set(const std::string& line1, const std::string& line2)
   line[0] = line1;
   line[1] = line2;
 
-  int lno,num[2],ext[2];
+  int lno,num[2],exp[2];
   char s[5];
 
 // *** parse line 1 ***
@@ -42,16 +43,16 @@ bool TLE::set(const std::string& line1, const std::string& line2)
               &lno,&num[0],&classification,
               &IDYY,&IDNY,IDPL,&epoch_year,&epoch_day,
               &s[0],&dmotion,
-              &s[1],&ddmotion,&s[2],&ext[0],
-              &s[3],&BSTAR,&s[4],&ext[1],
+              &s[1],&ddmotion,&s[2],&exp[0],
+              &s[3],&BSTAR,&s[4],&exp[1],
               &ephemeris,&elemnum);
 
   IDPL[3] = '\0';
-  ext[0]   *=  (s[2] == '-')? -1.0: 1.0;
-  ext[1]   *=  (s[4] == '-')? -1.0: 1.0;
+  exp[0]   *=  (s[2] == '-')? -1.0: 1.0;
+  exp[1]   *=  (s[4] == '-')? -1.0: 1.0;
   dmotion  *= ((s[0] == '-')? -1.0: 1.0) * 2.0;
-  ddmotion *= ((s[1] == '-')? -1.0: 1.0) * 6.0 * 10e-6 * pow(10.0,ext[0]);
-  BSTAR    *= ((s[3] == '-')? -1.0: 1.0)       * 10e-6 * pow(10.0,ext[1]);
+  ddmotion *= ((s[1] == '-')? -1.0: 1.0) * 6.0 * 10e-6 * pow(10.0,exp[0]);
+  BSTAR    *= ((s[3] == '-')? -1.0: 1.0)       * 10e-6 * pow(10.0,exp[1]);
 
 // *** parse line 2 ***
   tmpstr = line2;
@@ -67,11 +68,13 @@ bool TLE::set(const std::string& line1, const std::string& line2)
   if (tmpstr[43] == ' ') tmpstr[43] = '0';
   if (tmpstr[44] == ' ') tmpstr[44] = '0';
   if (tmpstr[45] == ' ') tmpstr[45] = '0';
+
   std::sscanf(tmpstr.c_str(),
               "%1d %5d %8lf %8lf %7lf %8lf %8lf %11lf%5d",
               &lno,&num[1],
               &inclination,&ascension,&eccentricity,
               &perigee,&anomaly,&motion,&revolution);
+
   eccentricity *= 10e-8;
 
 // *** check ***
