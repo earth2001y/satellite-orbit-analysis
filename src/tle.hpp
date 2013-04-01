@@ -9,6 +9,9 @@
 
 #include <string>
 
+#ifndef __TLE_HPP__
+#define __TLE_HPP__
+
 #ifdef UNITTEST
 # define protected public
 # define private   public
@@ -54,4 +57,6 @@ private:
 
 #undef protected
 #undef private
+
+#endif // __TLE_HPP__
 
