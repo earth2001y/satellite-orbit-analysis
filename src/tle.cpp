@@ -92,7 +92,7 @@ bool TLE::validation(const std::string& line)
 
   int sum = 0;
 
-  for (int i=0; i < s; i++) {
+  for (size_t i=0; i < s; i++) {
     const char c = str[i];
     if ('0' <= c && c <= '9') {
       sum += c - '0';
