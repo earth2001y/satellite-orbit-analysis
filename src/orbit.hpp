@@ -1,20 +1,20 @@
 /******************************************************************************
- * 衛星の位置・速度計算ソルバの基底クラス
+ * 衛星軌道のクラス
  *****************************************************************************/
 
 #include <gsl/gsl_const_mksa.h>
 
 #include "tle.hpp"
 
-#ifndef __ORBIT_SOLVER_HPP__
-#define __ORBIT_SOLVER_HPP__
+#ifndef __ORBIT_HPP__
+#define __ORBIT_HPP__
 
 #ifdef UNITTEST
 # define protected public
 # define private   public
 #endif
 
-class orb_solver {
+class orbit {
   const TLE* tle;
 
   // physical and mathematical constants.
@@ -68,16 +68,15 @@ class orb_solver {
                //   coefficient and A is the average cross-sectional area of the satellite of mass m
 
 public:
-  orb_solver();
-  virtual ~orb_solver();
+  orbit();
+  virtual ~orbit();
 
-  virtual int setTLE(const TLE* tle);
-  virtual int solve_position(double* res, const double& t) = 0;
-  virtual int solve_velocity(double* res, const double& t) = 0;
+  int setTLE(const TLE* tle);
+  int sgp4(double* position, double* velocity, const double& t);
 };
 
 #undef protected
 #undef private
 
-#endif // __ORBIT_SOLVER_HPP__
+#endif // __ORBIT_HPP__
 

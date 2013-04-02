@@ -2,9 +2,9 @@
 #include <cmath>
 
 #include "tle.hpp"
-#include "orbit-solver.hpp"
+#include "orbit.hpp"
 
-orb_solver::orb_solver()
+orbit::orbit()
 {
   k2  = CK2;
   k4  = CK4;
@@ -17,13 +17,13 @@ orb_solver::orb_solver()
   A30 = -J3*pow(aE,3);
 }
 
-orb_solver::~orb_solver()
+orbit::~orbit()
 {
 }
 
-int orb_solver::setTLE(const TLE* tle)
+int orbit::setTLE(const TLE* tle)
 {
-  orb_solver::tle = tle;
+  orbit::tle = tle;
 
   n0  = tle->motion;
   e0  = tle->eccentricity;
@@ -31,6 +31,11 @@ int orb_solver::setTLE(const TLE* tle)
   M0  = tle->anomaly;
   w0  = tle->perigee;
 
+  return 0;
+}
+
+int orbit::sgp4(double* position, double* velocity, const double& t)
+{
   return 0;
 }
 
