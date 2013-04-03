@@ -30,6 +30,11 @@ bool TLE::set(const std::string& line1, const std::string& line2)
 
 // *** parse line 1 ***
   tmpstr = line1;
+  if (tmpstr[ 9] == ' ') tmpstr[ 9] = '0';
+  if (tmpstr[10] == ' ') tmpstr[10] = '0';
+  if (tmpstr[11] == ' ') tmpstr[11] = '0';
+  if (tmpstr[12] == ' ') tmpstr[12] = '0';
+  if (tmpstr[13] == ' ') tmpstr[13] = '0';
   if (tmpstr[33] == ' ') tmpstr[33] = '+';
   if (tmpstr[44] == ' ') tmpstr[44] = '+';
   if (tmpstr[53] == ' ') tmpstr[53] = '+';
