@@ -68,6 +68,11 @@ bool TLE::set(const std::string& line1, const std::string& line2)
   if (tmpstr[43] == ' ') tmpstr[43] = '0';
   if (tmpstr[44] == ' ') tmpstr[44] = '0';
   if (tmpstr[45] == ' ') tmpstr[45] = '0';
+  if (tmpstr[63] == ' ') tmpstr[63] = '0';
+  if (tmpstr[64] == ' ') tmpstr[64] = '0';
+  if (tmpstr[65] == ' ') tmpstr[65] = '0';
+  if (tmpstr[66] == ' ') tmpstr[66] = '0';
+  if (tmpstr[67] == ' ') tmpstr[67] = '0';
 
   std::sscanf(tmpstr.c_str(),
               "%1d %5d %8lf %8lf %7lf %8lf %8lf %11lf%5d",
