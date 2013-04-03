@@ -15,6 +15,8 @@
 #endif
 
 class orbit {
+
+protected:
   const TLE* tle;
 
   // physical and mathematical constants.
@@ -49,7 +51,7 @@ class orbit {
   double i0;   // the "mean" inclination at epoch
   double M0;   // the "mean" mean anomaly at epoch
   double w0;   // the "mean" argument of perigee at epoch
-  double om0;  // the "mean" longitude of ascending node at epoch
+  double Om0;  // the "mean" longitude of ascending node at epoch
   double dn0;  // the time rate of change of "mean" mean motion at epoch
   double ddn0; // the second time rate of change of "mean" mean motion at epoch
   double Bc;   // the SGP4 type drag coefficient
@@ -67,11 +69,16 @@ class orbit {
                //   the ballistic coefficient for SGP8 where CD is a dimensionless drag
                //   coefficient and A is the average cross-sectional area of the satellite of mass m
 
+private:
+  double fmod2p(const double x);
+
 public:
   orbit();
   virtual ~orbit();
 
   int setTLE(const TLE* tle);
+
+  int sgp(double* position, double* velocity, const double& t);
   int sgp4(double* position, double* velocity, const double& t);
 };
 
