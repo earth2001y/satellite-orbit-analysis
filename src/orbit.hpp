@@ -51,7 +51,7 @@ protected:
   double i0;   // the "mean" inclination at epoch
   double M0;   // the "mean" mean anomaly at epoch
   double w0;   // the "mean" argument of perigee at epoch
-  double Om0;  // the "mean" longitude of ascending node at epoch
+  double W0;   // the "mean" longitude of ascending node at epoch
   double dn0;  // the time rate of change of "mean" mean motion at epoch
   double ddn0; // the second time rate of change of "mean" mean motion at epoch
   double Bc;   // the SGP4 type drag coefficient
@@ -71,6 +71,7 @@ protected:
 
 private:
   double fmod2p(const double x);
+  double actan(const double sinx, const double cosx);
 
 public:
   orbit();
