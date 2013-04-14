@@ -4,6 +4,7 @@
 
 #include "tle.hpp"
 #include "orbit.hpp"
+#include "constant.hpp"
 
 orbit::orbit()
 {
