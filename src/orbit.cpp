@@ -1,4 +1,5 @@
 
+#include <ctime>
 #include <cmath>
 #include <cstdio>
 
@@ -73,6 +74,31 @@ int orbit::setTLE(const TLE* tle)
 #endif
 
   return 0;
+}
+
+double orbit::elapsed_day(const time_t* t)
+{
+  char str[20];
+  int Y,M,D,h,m,s;
+  struct tm* ptm = gmtime(t);
+  strftime (str,20,"%Y %m %d %H %M %S",ptm);
+  sscanf(str,"%04d %02d %02d %02d %02d %02d",&Y,&M,&D,&h,&m,&s);
+
+  int days[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+  if (Y % 4 == 0) {
+    if ( Y % 100 == 0) {
+      if ( Y % 400 == 0) {
+        days[1] = 29;
+      }
+    } else {
+      days[1] = 29;
+    }
+  }
+  double day = 0.;
+  for (int mon = 0; mon < M-1; mon++) { day += days[mon]; }
+  day += D + ( h / 24. ) + ( m / 1440. ) + ( s / 86400. );
+
+  return day - tle->epoch_day;
 }
 
 int orbit::sgp(double* position, double* velocity, const double& t)

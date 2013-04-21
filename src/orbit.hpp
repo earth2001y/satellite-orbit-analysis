@@ -4,6 +4,7 @@
 
 #include <gsl/gsl_const_mksa.h>
 
+#include <ctime>
 #include "tle.hpp"
 
 #ifndef __ORBIT_HPP__
@@ -52,6 +53,7 @@ public:
   virtual ~orbit();
 
   int setTLE(const TLE* tle);
+  double elapsed_day(const time_t* t);
 
   int sgp(double* position, double* velocity, const double& t);
   int sgp4(double* position, double* velocity, const double& t);
