@@ -10,8 +10,7 @@
 // 経度0度方向をX、東経90方向をY、北極方向をZ の地心直交座標系から
 // 経度、緯度、高さ(楕円面からの高さ)の極座標系に変換する。
 // aに赤道半径[km], bに極半径[km]
-rectangular polar::toRectangular(const double a = AE * XKMPER,
-                                 const double b = 6356.752 ) const
+rectangular polar::toRectangular(const double a, const double b) const
 {
   rectangular r;
 
@@ -65,8 +64,7 @@ polar polar::toGeodetic(const time_t* t) const
 // 経度、緯度、高さ(楕円面からの高さ)の極座標系から、
 // 経度0度方向をX、東経90方向をY、北極方向をZ の地心直交座標系に変換する。
 // aに赤道半径[km], bに極半径[km]
-polar rectangular::toPolar(const double a = AE * XKMPER,
-                           const double b = 6356.752 ) const
+polar rectangular::toPolar(const double a, const double b) const
 {
   double f  = (a - b) / a;  // 扁平率
   double e2 = f * (2. - f); // 離心率の2乗

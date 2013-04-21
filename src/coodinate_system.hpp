@@ -13,6 +13,8 @@
 # define private   public
 #endif
 
+#include "constant.hpp"
+
 class polar;
 class rectangular;
 
@@ -23,7 +25,8 @@ public:
   double longitude; // 経度
   double altitude;  // 高度[km]
 
-  rectangular toRectangular(const double a, const double b) const;
+  rectangular toRectangular(const double a = AE * XKMPER,
+                            const double b = 6356.752 ) const;
 
   polar toEquatorial(const time_t* t) const;
   polar toGeodetic(const time_t* t) const;
@@ -36,7 +39,8 @@ public:
   double Y;
   double Z;
 
-  polar toPolar(const double a, const double b) const;
+  polar toPolar(const double a = AE * XKMPER,
+                const double b = 6356.752 ) const;
 };
 
 // 指定時刻のグリニッジ恒星時を求める
