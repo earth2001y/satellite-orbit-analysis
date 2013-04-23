@@ -7,8 +7,8 @@
 #include "coodinate_system.hpp"
 
 
-// 経度0度方向をX、東経90方向をY、北極方向をZ の地心直交座標系から
-// 経度、緯度、高さ(楕円面からの高さ)の極座標系に変換する。
+// 経度、緯度、高さ(楕円面からの高さ)の極座標系から、
+// 経度0度方向をX、東経90方向をY、北極方向をZ の地心直交座標系に変換する。
 // aに赤道半径[km], bに極半径[km]
 rectangular polar::toRectangular(const double a, const double b) const
 {
@@ -61,8 +61,8 @@ polar polar::toGeodetic(const time_t* t) const
   return p;
 }
 
-// 経度、緯度、高さ(楕円面からの高さ)の極座標系から、
-// 経度0度方向をX、東経90方向をY、北極方向をZ の地心直交座標系に変換する。
+// 経度0度方向をX、東経90方向をY、北極方向をZ の地心直交座標系から
+// 経度、緯度、高さ(楕円面からの高さ)の極座標系に変換する。
 // aに赤道半径[km], bに極半径[km]
 polar rectangular::toPolar(const double a, const double b) const
 {
@@ -95,6 +95,7 @@ polar rectangular::toPolar(const double a, const double b) const
   return pl;
 }
 
+// グレゴリオ暦からグリニッジ恒星時の1日未満の部分を算出する
 double greenwich_sidereal_time(const time_t* t)
 {
   char str[20];
