@@ -44,10 +44,6 @@ protected:
                //   the ballistic coefficient for SGP8 where CD is a dimensionless drag
                //   coefficient and A is the average cross-sectional area of the satellite of mass m
 
-private:
-  double fmod2p(const double x);
-  double actan(const double sinx, const double cosx);
-
 public:
   orbit();
   virtual ~orbit();

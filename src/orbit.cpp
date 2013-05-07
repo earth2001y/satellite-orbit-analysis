@@ -6,6 +6,7 @@
 #include "tle.hpp"
 #include "orbit.hpp"
 #include "constant.hpp"
+#include "utils.hpp"
 
 orbit::orbit()
 {
@@ -22,32 +23,6 @@ orbit::orbit()
 
 orbit::~orbit()
 {
-}
-
-double orbit::fmod2p(const double x)
-{
-  double y = x;
-  y = y - static_cast<int>(x / TWOPI) * TWOPI;
-  if (y < 0.) y = y + TWOPI;
-  return y;
-}
-
-double orbit::actan(const double sinx, const double cosx)
-{
-  double x;
-  if (cosx == 0.) {
-    if (sinx == 0.) return 0.;
-    if (sinx >  0.) return PIO2;
-    x = X3PIO2;
-  } else if (cosx > 0.) {
-    if (sinx == 0.) return 0.;
-    if (sinx >  0.) x = 0;
-    x = TWOPI;
-  } else {
-    x = PI;
-  }
-
-  return x + atan(sinx/cosx);
 }
 
 int orbit::setTLE(const TLE* tle)
