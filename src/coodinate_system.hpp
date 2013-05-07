@@ -15,21 +15,19 @@
 
 #include "constant.hpp"
 
-class polar;
+class geodetic;
 class rectangular;
 
-// 極座標系
-class polar {
+// 測地座標系
+class geodetic {
 public:
   double latitude;  // 緯度
   double longitude; // 経度
   double altitude;  // 高度[km]
 
-  rectangular toRectangular(const double a = AE * XKMPER,
-                            const double b = 6356.752 ) const;
-
-  polar toEquatorial(const time_t* t) const;
-  polar toGeodetic(const time_t* t) const;
+  rectangular toRectangular(const double Pg = 0.,
+                            const double a = GRS80::a,
+                            const double f = GRS80::f ) const;
 };
 
 // 直交座標系
@@ -39,8 +37,9 @@ public:
   double Y;
   double Z;
 
-  polar toPolar(const double a = AE * XKMPER,
-                const double b = 6356.752 ) const;
+  geodetic toGeodetic(const double Pg = 0.,
+                      const double a = GRS80::a,
+                      const double f = GRS80::f ) const;
 };
 
 // 指定時刻のグリニッジ恒星時を求める
