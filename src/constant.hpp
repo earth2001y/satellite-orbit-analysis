@@ -33,5 +33,21 @@
   static const double GE     = 3.986004418E14; // equiv G*M [m3.s-2]
 //static const double G      = GSL_CONST_MKSA_GRAVITATIONAL_CONSTANT;
 
+namespace GRS80 {
+  static const double a    = AE * XKMPER;
+  static const double invf = 298.257222101;
+  static const double f    = 1. / invf;
+  static const double b    = -(a*f - a);
+  static const double e2   = f * (2. - f);
+};
+
+namespace WGS84 {
+  static const double a    = AE * XKMPER;
+  static const double invf = 298.257223563;
+  static const double f    = 1. / invf;
+  static const double b    = -(a*f - a);
+  static const double e2   = f * (2. - f);
+};
+
 #endif // __CONSTANT_HPP__
 
