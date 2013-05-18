@@ -66,7 +66,7 @@ geodetic rectangular::toGeodetic(const double Pg,
   double N = a / sqrt(1. - e2 * sinp*sinp);
 
   g.latitude  = p1;
-  g.longitude = fmod2p(actan(Y/a,X/a) - Pg);
+  g.longitude = fmod2p(atan2(Y,X) - Pg);
   g.altitude  = P / cos(p1) - N;
 
   return g;
